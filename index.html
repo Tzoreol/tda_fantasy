@@ -1,0 +1,72 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="dark.css" rel="stylesheet">
+    <script type="importmap">
+        {
+          "imports": {
+            "@material/web/": "https://esm.run/@material/web/"
+          }
+        }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+    </script>
+</head>
+<body>
+<md-tabs id="leagues" aria-label="Content to view">
+    <md-primary-tab id="league-a-tab" aria-controls="league-a-panel">
+    </md-primary-tab>
+    <md-primary-tab id="league-b-tab" aria-controls="league-b-panel">
+    </md-primary-tab>
+    <md-primary-tab id="league-c-tab" aria-controls="league-c-panel">
+    </md-primary-tab>
+    <md-primary-tab id="league-d-tab" aria-controls="league-d-panel">
+    </md-primary-tab>
+</md-tabs>
+
+<div id="league-a-panel" role="tabpanel" aria-labelledby="league-a-tab">
+    <md-tabs>
+        <md-secondary-tab id="league-a-matchups-tab" aria-controls="league-a-matchups-panel">Rencontres</md-secondary-tab>
+        <md-secondary-tab>Classement</md-secondary-tab>
+        <md-secondary-tab>Paramètres</md-secondary-tab>
+    </md-tabs>
+
+    <div id="league-a-matchups-panel" role="tabpanel" aria-labelledby="league-a-matchups-tab">
+
+    </div>
+</div>
+
+<div id="league-b-panel" role="tabpanel" aria-labelledby="league-b-tab" hidden>
+    <md-tabs>
+        <md-secondary-tab id="league-b-matchups-tab" aria-controls="league-b-matchups-panel">Rencontres</md-secondary-tab>
+        <md-secondary-tab>Classement</md-secondary-tab>
+        <md-secondary-tab>Paramètres</md-secondary-tab>
+    </md-tabs>
+
+    <div id="league-b-matchups-panel" role="tabpanel" aria-labelledby="league-b-matchups-tab">
+    </div>
+</div>
+
+<div id="league-c-panel" role="tabpanel" aria-labelledby="league-c-tab" hidden>
+    <md-tabs>
+        <md-secondary-tab id="league-b-matchups-tab" aria-controls="league-c-matchups-panel">Rencontres</md-secondary-tab>
+        <md-secondary-tab>Classement</md-secondary-tab>
+        <md-secondary-tab>Paramètres</md-secondary-tab>
+    </md-tabs>
+
+    <div id="league-c-matchups-panel" role="tabpanel" aria-labelledby="league-c-matchups-tab">
+    </div>
+</div>
+
+<div id="league-d-panel" role="tabpanel" aria-labelledby="league-c-tab" hidden>
+    <md-tabs>
+        <md-secondary-tab id="league-d-matchups-tab" aria-controls="league-d-matchups-panel">Rencontres</md-secondary-tab>
+        <md-secondary-tab>Classement</md-secondary-tab>
+        <md-secondary-tab>Paramètres</md-secondary-tab>
+    </md-tabs>
+
+    <div id="league-d-matchups-panel" role="tabpanel" aria-labelledby="league-d-matchups-tab">
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
