@@ -113,3 +113,24 @@ body {
   font-size: large;
   font-weight: bold;
 }
+
+#available_weeks {
+  margin: 1em auto;
+  text-align: center;
+  width: 80%;
+}
+#available_weeks span {
+  color: var(--md-sys-color-primary);
+  cursor: pointer;
+  display: inline-block;
+  height: 24px;
+  text-align: center;
+  width: 24px;
+}
+
+#available_weeks span.active {
+  background-color: var(--md-sys-color-primary);
+  border-radius: 12px;
+  color: var(--md-sys-color-surface);
+  font-weight: bold;
+}

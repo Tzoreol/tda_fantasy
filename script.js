@@ -38,9 +38,11 @@ async function init() {
 }
 
 async function loadLeagueData(league_name) {
+    buildAvailableWeeks(league_name)
     await loadLeagueRosters(league_name)
     await loadLeagueUsers(league_name)
     await loadLeagueMatchups(league_name, nfl_state.display_week)
+    clearMatchups(league_name)
     drawMatchups(league_name)
 }
 
@@ -79,8 +81,18 @@ async function loadNFLState() {
     nfl_state = await response.json();
 }
 
+function clearMatchups(league_name) {
+    let matchups_div = document.getElementById(`${league_name}-matchups`)
+
+    if(matchups_div) {
+        matchups_div.remove()
+    }
+}
+
 function drawMatchups(league_name) {
     let matchups = leagues_data[league_name].matchups
+    let matchups_div = document.createElement('div')
+    matchups_div.setAttribute("id", `${league_name}-matchups`)
     let matchups_panel = document.getElementById(`${league_name}-matchups-panel`)
 
     matchups.forEach(matchup => {
@@ -148,7 +160,41 @@ function drawMatchups(league_name) {
 
         matchup_div.appendChild(user1_div)
         matchup_div.appendChild(user2_div)
-        matchups_panel.appendChild(matchup_div)
+        matchups_div.appendChild(matchup_div)
     })
+
+    matchups_panel.appendChild(matchups_div)
 }
+
+function buildAvailableWeeks(league_name) {
+    let matchup_panel = document.getElementById(`${league_name}-matchups-panel`)
+    const last_week = nfl_state.display_week > leagues_data[league_name].settings.leg ? leagues_data[league_name].settings.leg : nfl_state.display_week
+    let available_weeks = document.createElement('div')
+    available_weeks.setAttribute("id", "available_weeks")
+
+    for(let week = 1; week <= last_week; week++) {
+        let week_span = document.createElement('span')
+        week_span.innerText = week
+        week_span.addEventListener('click', function() {
+            let active = document.querySelector(`#${league_name}-panel #available_weeks .active`)
+            active.classList.remove('active')
+
+            this.classList.add('active')
+
+            loadLeagueMatchups(league_name, week).then(() => {
+                clearMatchups(league_name)
+                drawMatchups(league_name)
+            })
+        })
+
+        if(week === last_week) {
+            week_span.classList.add('active')
+        }
+
+        available_weeks.appendChild(week_span)
+    }
+
+    matchup_panel.appendChild(available_weeks)
+}
+
 init();
